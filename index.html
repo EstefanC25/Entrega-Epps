@@ -2,88 +2,111 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Control de Entrega de EPP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="hoja-excel">
-  
-  <!-- Encabezado con Logo y Título exacto del Excel -->
-  <div class="encabezado-tabla">
-    <div class="encabezado-tabla__logo">
-     <img src="img/logo3.png" alt="Logo de la empresa">
-    </div>
-    <div class="encabezado-tabla__titulo">
-      CONTROL DE ENTREGA DE ELEMENTOS<br>DE PROTECCIÓN PERSONAL
-    </div>
+<header class="barra-superior">
+  <img src="img/logo3.png" alt="Logo de la empresa">
+  <div class="barra-superior__texto">
+    Control de Entrega de EPP
+    <span>Elementos de Protección Personal</span>
   </div>
+</header>
 
-  <!-- Sección 1: Datos Fijos del Trabajador -->
-  <div class="seccion-trabajador">
-    <div class="grid-trabajador">
-      <div class="campo-excel">
-        <label for="nombre">NOMBRE COMPLETO:</label>
-        <input type="text" id="nombre" required placeholder="Nombre y Apellidos">
-      </div>
-      <div class="campo-excel">
-        <label for="documento-id">N° DOCUMENTO DE IDENTIDAD:</label>
-        <input type="text" id="documento-id" required placeholder="Número de Cédula">
-      </div>
-    </div>
-    <div class="grid-trabajador" style="margin-top: 10px;">
-      <div class="campo-excel">
-        <label for="cargo">CARGO:</label>
-        <input type="text" id="cargo" placeholder="Ej. TECNICO DE MANTENIMIENTO">
-      </div>
-    </div>
-    <div class="nota-observaciones">
-      * En el campo OBSERVACIONES tenga en cuenta las siguientes alternativas: Persona nueva, reposición, cambio de área y/o pérdida.
-    </div>
-  </div>
+<main class="contenedor">
 
-  <!-- Sección 2: Registro de la Entrega (Columnas de la tabla) -->
-  <div class="seccion-epp">
-    <div class="seccion-epp__titulo">DATOS DE LA ENTREGA DE EPP</div>
-    
-    <div class="campo-excel" style="margin-bottom: 12px;">
-      <label for="epp">NOMBRE ELEMENTO ENTREGADO:</label>
-      <input type="text" id="epp" required placeholder="Ej. Casco, Guantes, Botas de Seguridad">
+  <!-- 1. DATOS DEL TRABAJADOR -->
+  <section class="seccion seccion--trabajador">
+    <div class="seccion__cabecera">
+      <span class="rotulo-seccion">Datos del trabajador</span>
     </div>
-
-    <div class="grid-epp">
-      <div class="campo-excel">
-        <label for="proceso">PROCESO:</label>
-        <input type="text" id="proceso" placeholder="Ej. Mantenimiento, Instalación">
+    <div class="seccion__cuerpo">
+      <div class="campo">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" placeholder="Nombre y apellidos" required>
       </div>
-      <div class="campo-excel">
-        <label for="cantidad">CANTIDAD ENTREGADA:</label>
-        <input type="number" id="cantidad" value="1" min="1">
+      <div class="campo">
+        <label for="documento-id">N° documento de identidad</label>
+        <input type="text" id="documento-id" placeholder="Número de cédula" required inputmode="numeric">
+      </div>
+      <div class="campo">
+        <label for="cargo">Cargo</label>
+        <input type="text" id="cargo" placeholder="Ej. Técnico de mantenimiento">
       </div>
     </div>
+  </section>
 
-    <div class="grid-epp" style="margin-top: 12px;">
-      <div class="campo-excel">
-        <label for="observaciones">OBSERVACIONES:</label>
+  <!-- 2. DATOS DE LA ENTREGA -->
+  <section class="seccion">
+    <div class="seccion__cabecera">
+      <span class="rotulo-seccion">Entrega de EPP</span>
+    </div>
+    <div class="seccion__cuerpo">
+      <div class="campo">
+        <label for="epp">Elemento entregado</label>
+        <input type="text" id="epp" placeholder="Ej. Casco, guantes, botas de seguridad" required>
+      </div>
+
+      <div class="fila-dos">
+        <div class="campo">
+          <label for="proceso">Proceso</label>
+          <select id="proceso">
+            <option value="">Seleccionar…</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="Instalación">Instalación</option>
+            <option value="Ingeniero">Ingeniero</option>
+            <option value="Supervisor">Supervisor</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="cantidad">Cantidad</label>
+          <div class="stepper">
+            <button type="button" id="btn-restar" aria-label="Restar">−</button>
+            <input type="number" id="cantidad" value="1" min="1" inputmode="numeric">
+            <button type="button" id="btn-sumar" aria-label="Sumar">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="observaciones">Observaciones</label>
         <select id="observaciones">
-          <option value="">-- Seleccionar --</option>
+          <option value="">Seleccionar…</option>
           <option value="Persona nueva">Persona nueva</option>
           <option value="Reposición">Reposición</option>
           <option value="Cambio de área">Cambio de área</option>
           <option value="Pérdida">Pérdida</option>
         </select>
       </div>
-      <div class="campo-excel">
-        <label for="entrega">ENTREGADO POR:</label>
-        <input type="text" id="entrega" required placeholder="Nombre de quien entrega">
-      </div>
-    </div>
 
-    <!-- Bloque de Firmas -->
-    <div class="grid-firmas">
-      <div class="firma-bloque">
-        <label>FIRMA DE QUIEN RECIBE:</label>
+      <p class="nota">
+        En Observaciones ten en cuenta: persona nueva, reposición, cambio de área o pérdida.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. FIRMAS -->
+  <section class="seccion">
+    <div class="seccion__cabecera">
+      <span class="rotulo-seccion">Firmas</span>
+    </div>
+    <div class="seccion__cuerpo">
+
+      <div class="firma">
+        <div class="firma__cabecera">
+          <label>Quien recibe</label>
+          <button type="button" class="firma__borrar" id="btn-borrar-recibe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+            Borrar
+          </button>
+        </div>
         <div class="firma-lienzo">
           <canvas id="lienzo-recibe"></canvas>
           <span class="firma-lienzo__marca"></span>
@@ -91,36 +114,37 @@
         </div>
       </div>
 
-      <div class="firma-bloque">
-        <label>FIRMA DE QUIEN ENTREGA:</label>
+      <div class="firma">
+        <div class="firma__cabecera">
+          <label>Quien entrega</label>
+          <button type="button" class="firma__borrar" id="btn-borrar-entrega">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>
+            Borrar
+          </button>
+        </div>
         <div class="firma-lienzo">
           <canvas id="lienzo-entrega"></canvas>
           <span class="firma-lienzo__marca"></span>
           <span class="firma-lienzo__vacio" id="marcador-vacio-entrega">Firme sobre la línea</span>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Botones -->
-  <div class="acciones">
-    <button class="boton boton--limpiar" id="btn-limpiar" type="button">Limpiar Firma</button>
-    <button class="boton boton--guardar" id="btn-guardar" type="button">Guardar Registro</button>
-  </div>
+    </div>
+  </section>
 
   <p class="estado" id="estado"></p>
+
+</main>
+
+<div class="barra-inferior">
+  <button type="button" class="boton-guardar" id="btn-guardar">Guardar registro</button>
 </div>
 
 <script>
-(function(){
-  // Reemplaza esta URL por la URL de tu Web App desplegada en Google Apps Script
-  const URL_BACKEND = 'https://script.google.com/macros/s/AKfycbya8eb0X1esKyRrcDdHgR4RqvoUqo0AsJvnMqPFSgle3WceFA22rcZZr1ZsNSQ038Dp/exec';
+(() => {
+  // Misma URL de tu Web App de Apps Script
+  const URL_BACKEND = 'https://script.google.com/macros/s/AKfycbwhfkXDxhpd22IqigbEQHSxbVT02cgX8-Wxl1zHgTJp_QKs-QGVvSPgQS0RdGXcLeA1/exec';
 
-  const btnLimpiar = document.getElementById('btn-limpiar');
-  const btnGuardar = document.getElementById('btn-guardar');
-  const estado = document.getElementById('estado');
-
-  // Campos
   const inputNombre = document.getElementById('nombre');
   const inputDocumento = document.getElementById('documento-id');
   const inputCargo = document.getElementById('cargo');
@@ -128,112 +152,124 @@
   const inputProceso = document.getElementById('proceso');
   const inputCantidad = document.getElementById('cantidad');
   const inputObservaciones = document.getElementById('observaciones');
-  const inputEntrega = document.getElementById('entrega');
 
-  // Crea un panel de firma independiente a partir de un canvas y su marcador de "vacío"
-  function crearPanelFirma(idCanvas, idMarcador){
+  const btnGuardar = document.getElementById('btn-guardar');
+  const estado = document.getElementById('estado');
+
+  function mostrarEstado(mensaje, tipo){
+    estado.textContent = mensaje;
+    estado.className = 'estado' + (tipo ? ' estado--' + tipo : '');
+  }
+
+  /* ---------------------------------------------------------
+     Stepper de cantidad
+  --------------------------------------------------------- */
+  document.getElementById('btn-sumar').addEventListener('click', () => {
+    inputCantidad.value = (parseInt(inputCantidad.value, 10) || 0) + 1;
+  });
+  document.getElementById('btn-restar').addEventListener('click', () => {
+    const actual = parseInt(inputCantidad.value, 10) || 1;
+    inputCantidad.value = Math.max(1, actual - 1);
+  });
+
+  /* ---------------------------------------------------------
+     Panel de firma reutilizable
+  --------------------------------------------------------- */
+  function crearFirma(idCanvas, idMarcador, idBotonBorrar){
     const canvas = document.getElementById(idCanvas);
     const ctx = canvas.getContext('2d');
-    const marcadorVacio = document.getElementById(idMarcador);
+    const marcador = document.getElementById(idMarcador);
 
     let dibujando = false;
-    let trazoIniciado = false;
-    let ultimaPos = { x: 0, y: 0 };
+    let tieneFirma = false;
+    let ultimaPosicion = { x: 0, y: 0 };
 
-    function ajustarLienzo(){
-      const relacionPixeles = window.devicePixelRatio || 1;
+    function ajustarCanvas(){
+      const relacion = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * relacionPixeles;
-      canvas.height = rect.height * relacionPixeles;
-      ctx.scale(relacionPixeles, relacionPixeles);
+      canvas.width = rect.width * relacion;
+      canvas.height = rect.height * relacion;
+      ctx.scale(relacion, relacion);
       ctx.lineWidth = 2;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      ctx.strokeStyle = '#000000';
+      ctx.strokeStyle = '#191C1F';
     }
 
-    function posDesdeEvento(evento){
+    function obtenerPosicion(evento){
       const rect = canvas.getBoundingClientRect();
       const punto = evento.touches ? evento.touches[0] : evento;
-      return {
-        x: punto.clientX - rect.left,
-        y: punto.clientY - rect.top
-      };
+      return { x: punto.clientX - rect.left, y: punto.clientY - rect.top };
     }
 
-    function iniciarTrazo(evento){
+    function comenzar(evento){
       dibujando = true;
-      trazoIniciado = true;
-      marcadorVacio.style.opacity = '0';
-      ultimaPos = posDesdeEvento(evento);
+      tieneFirma = true;
+      marcador.style.opacity = '0';
+      ultimaPosicion = obtenerPosicion(evento);
       evento.preventDefault();
     }
 
     function dibujar(evento){
       if(!dibujando) return;
-      const pos = posDesdeEvento(evento);
+      const posicion = obtenerPosicion(evento);
       ctx.beginPath();
-      ctx.moveTo(ultimaPos.x, ultimaPos.y);
-      ctx.lineTo(pos.x, pos.y);
+      ctx.moveTo(ultimaPosicion.x, ultimaPosicion.y);
+      ctx.lineTo(posicion.x, posicion.y);
       ctx.stroke();
-      ultimaPos = pos;
+      ultimaPosicion = posicion;
       evento.preventDefault();
     }
 
-    function terminarTrazo(){
-      dibujando = false;
-    }
+    function terminar(){ dibujando = false; }
 
-    canvas.addEventListener('mousedown', iniciarTrazo);
+    canvas.addEventListener('mousedown', comenzar);
     canvas.addEventListener('mousemove', dibujar);
-    window.addEventListener('mouseup', terminarTrazo);
-
-    canvas.addEventListener('touchstart', iniciarTrazo, { passive: false });
+    window.addEventListener('mouseup', terminar);
+    canvas.addEventListener('touchstart', comenzar, { passive: false });
     canvas.addEventListener('touchmove', dibujar, { passive: false });
-    canvas.addEventListener('touchend', terminarTrazo);
+    canvas.addEventListener('touchend', terminar);
 
-    window.addEventListener('resize', function(){
-      const datosPrevios = trazoIniciado ? canvas.toDataURL() : null;
-      ajustarLienzo();
+    window.addEventListener('resize', () => {
+      const datosPrevios = tieneFirma ? canvas.toDataURL() : null;
+      ajustarCanvas();
       if(datosPrevios){
         const img = new Image();
-        img.onload = function(){ ctx.drawImage(img, 0, 0, canvas.clientWidth, canvas.clientHeight); };
+        img.onload = () => ctx.drawImage(img, 0, 0, canvas.clientWidth, canvas.clientHeight);
         img.src = datosPrevios;
       }
     });
 
-    ajustarLienzo();
+    ajustarCanvas();
+
+    function limpiar(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      tieneFirma = false;
+      marcador.style.opacity = '1';
+    }
+
+    document.getElementById(idBotonBorrar).addEventListener('click', limpiar);
 
     return {
-      estaVacio: function(){ return !trazoIniciado; },
-      limpiar: function(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        trazoIniciado = false;
-        marcadorVacio.style.opacity = '1';
-      },
-      obtenerDataUrl: function(){ return canvas.toDataURL('image/png'); }
+      estaVacio: () => !tieneFirma,
+      limpiar,
+      obtenerImagen: () => canvas.toDataURL('image/png')
     };
   }
 
-  const firmaRecibe = crearPanelFirma('lienzo-recibe', 'marcador-vacio-recibe');
-  const firmaEntrega = crearPanelFirma('lienzo-entrega', 'marcador-vacio-entrega');
+  const firmaRecibe = crearFirma('lienzo-recibe', 'marcador-vacio-recibe', 'btn-borrar-recibe');
+  const firmaEntrega = crearFirma('lienzo-entrega', 'marcador-vacio-entrega', 'btn-borrar-entrega');
 
-  btnLimpiar.addEventListener('click', function(){
-    firmaRecibe.limpiar();
-    firmaEntrega.limpiar();
-    estado.textContent = '';
-    estado.className = 'estado';
-  });
-
-  btnGuardar.addEventListener('click', function(){
-    if(!inputNombre.value.trim() || !inputDocumento.value.trim() || !inputEpp.value.trim() || !inputEntrega.value.trim()){
-      estado.textContent = 'Por favor completa los campos obligatorios.';
-      estado.className = 'estado estado--error';
+  /* ---------------------------------------------------------
+     Guardar registro
+  --------------------------------------------------------- */
+  btnGuardar.addEventListener('click', async () => {
+    if(!inputNombre.value.trim() || !inputDocumento.value.trim() || !inputEpp.value.trim()){
+      mostrarEstado('Por favor completa los campos obligatorios.', 'error');
       return;
     }
     if(firmaRecibe.estaVacio() || firmaEntrega.estaVacio()){
-      estado.textContent = 'Faltan una o ambas firmas.';
-      estado.className = 'estado estado--error';
+      mostrarEstado('Faltan una o ambas firmas.', 'error');
       return;
     }
 
@@ -245,48 +281,42 @@
       proceso: inputProceso.value.trim(),
       cantidad: inputCantidad.value || 1,
       observaciones: inputObservaciones.value,
-      entrega: inputEntrega.value.trim(),
-      firmaRecibe: firmaRecibe.obtenerDataUrl(),
-      firmaEntrega: firmaEntrega.obtenerDataUrl(),
+      firmaRecibe: firmaRecibe.obtenerImagen(),
+      firmaEntrega: firmaEntrega.obtenerImagen(),
       fecha: new Date().toISOString().split('T')[0]
     };
 
     btnGuardar.disabled = true;
-    estado.textContent = 'Guardando en la hoja de cálculo...';
-    estado.className = 'estado';
+    mostrarEstado('Guardando en la hoja de cálculo…');
 
-    fetch(URL_BACKEND, {
-      method: 'POST',
-      body: JSON.stringify(registro)
-    })
-      .then(function(respuesta){ return respuesta.json(); })
-      .then(function(resultado){
-        if(resultado.ok){
-          estado.textContent = '¡Registro guardado exitosamente!';
-          estado.className = 'estado estado--ok';
-
-          inputNombre.value = '';
-          inputDocumento.value = '';
-          inputCargo.value = '';
-          inputEpp.value = '';
-          inputProceso.value = '';
-          inputCantidad.value = '1';
-          inputObservaciones.value = '';
-          inputEntrega.value = '';
-          firmaRecibe.limpiar();
-          firmaEntrega.limpiar();
-        } else {
-          estado.textContent = resultado.error || 'No se pudo guardar el registro.';
-          estado.className = 'estado estado--error';
-        }
-      })
-      .catch(function(){
-        estado.textContent = 'Error de conexión al servidor.';
-        estado.className = 'estado estado--error';
-      })
-      .finally(function(){
-        btnGuardar.disabled = false;
+    try {
+      const respuesta = await fetch(URL_BACKEND, {
+        method: 'POST',
+        body: JSON.stringify(registro)
       });
+      const resultado = await respuesta.json();
+
+      if(resultado.ok){
+        mostrarEstado('¡Registro guardado exitosamente!', 'ok');
+
+        inputNombre.value = '';
+        inputDocumento.value = '';
+        inputCargo.value = '';
+        inputEpp.value = '';
+        inputProceso.value = '';
+        inputCantidad.value = '1';
+        inputObservaciones.value = '';
+        firmaRecibe.limpiar();
+        firmaEntrega.limpiar();
+      } else {
+        mostrarEstado(resultado.error || 'No se pudo guardar el registro.', 'error');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      mostrarEstado('Error de conexión con el servidor.', 'error');
+    } finally {
+      btnGuardar.disabled = false;
+    }
   });
 })();
 </script>

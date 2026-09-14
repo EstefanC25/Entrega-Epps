@@ -1,240 +1,353 @@
-:root {
-  --borde-excel: #B0C4DE;
-  --borde-celda: #D9D9D9;
-  --fondo-encabezado: #F2F2F2;
-  --texto-principal: #000000;
-  --rojo-mitsubishi: #D92B27;
-  --azul-boton: #1E3A5F;
-}
-
-* { 
-  box-sizing: border-box; 
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #EAEAEA;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--texto-principal);
-  padding: 20px 10px;
-}
-
-.hoja-excel {
-  width: 100%;
-  max-width: 780px;
-  background: #FFFFFF;
-  border: 1px solid #CCCCCC;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  padding: 25px;
-}
-
-/* ENCABEZADO Y LOGO */
-.encabezado-tabla {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1.5px solid var(--texto-principal);
-  padding: 12px 20px;
-  margin-bottom: 15px;
-  background-color: #FAFAFA;
-}
-
-.encabezado-tabla__logo img {
-  height: 48px;
-  width: auto;
-  display: block;
-}
-
-.encabezado-tabla__titulo {
-  font-size: 15px;
-  font-weight: bold;
-  text-align: right;
-  color: #000000;
-  line-height: 1.3;
-}
-
-/* SECCIÓN DATOS DEL TRABAJADOR */
-.seccion-trabajador {
-  border: 1px solid #000000;
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: #FFFFFF;
-}
-
-.grid-trabajador {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 20px;
-}
-
-.campo-excel {
-  display: flex;
-  align-items: center;
-}
-
-.campo-excel label {
-  font-size: 11px;
-  font-weight: bold;
-  white-space: nowrap;
-  margin-right: 8px;
-}
-
-.campo-excel input {
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #000000;
-  font-size: 12px;
-  padding: 3px 4px;
-  outline: none;
-  background: transparent;
-}
-
-.nota-observaciones {
-  font-size: 10px;
-  color: #555555;
-  margin-top: 10px;
-  font-style: italic;
-  border-top: 1px dashed #CCCCCC;
-  padding-top: 6px;
-}
-
-/* TABLA DE ENTREGA */
-.seccion-epp {
-  border: 1px solid #000000;
-  padding: 15px;
-  margin-bottom: 15px;
-  background: #FFFFFF;
-}
-
-.seccion-epp__titulo {
-  font-size: 12px;
-  font-weight: bold;
-  background: var(--fondo-encabezado);
-  padding: 6px 10px;
-  margin: -15px -15px 15px -15px;
-  border-bottom: 1px solid #000000;
-}
-
-.grid-epp {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 12px 20px;
-}
-
-.campo-excel select {
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #000000;
-  font-size: 12px;
-  padding: 3px 0;
-  outline: none;
-  background: transparent;
-}
-
-/* FIRMA */
-.grid-firmas {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.firma-bloque {
-  margin-top: 0;
-}
-
-.firma-bloque label {
-  display: block;
-  font-size: 11px;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.firma-lienzo {
-  position: relative;
-  border: 1px solid #000000;
-  background: #FFFFFF;
-  touch-action: none;
-}
-
-.firma-lienzo canvas {
-  display: block;
-  width: 100%;
-  height: 130px;
-  cursor: crosshair;
-}
-
-.firma-lienzo__marca {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  border-top: 1px solid #CCCCCC;
-  pointer-events: none;
-}
-
-.firma-lienzo__vacio {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  color: #999999;
-  pointer-events: none;
-  transition: opacity 0.15s ease;
-}
-
-/* BOTONES Y ESTADO */
-.acciones {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.boton {
-  flex: 1;
-  padding: 10px 0;
-  border: 1px solid #000000;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.boton--limpiar {
-  background: #FFFFFF;
-  color: #000000;
-}
-
-.boton--guardar {
-  background: var(--rojo-mitsubishi);
-  color: #FFFFFF;
-  border-color: var(--rojo-mitsubishi);
-}
-
-.boton--guardar:disabled {
-  background: #CCCCCC;
-  border-color: #CCCCCC;
-  cursor: not-allowed;
-}
-
-.estado {
-  margin-top: 12px;
-  font-size: 12px;
-  text-align: center;
-  font-weight: bold;
-  min-height: 16px;
-}
-
-.estado--ok { color: var(--azul-boton); }
-.estado--error { color: var(--rojo-mitsubishi); }
-
-@media (max-width: 600px) {
-  .grid-trabajador, .grid-epp, .grid-firmas {
-    grid-template-columns: 1fr;
+:root{
+    --bg: #F1F2F4;
+    --superficie: #FFFFFF;
+    --tinta: #191C1F;
+    --tinta-suave: #666D76;
+    --linea: #E2E5E9;
+    --rojo: #D92B27;
+    --rojo-oscuro: #A81F1C;
+    --ok: #1F7A4D;
+    --radio: 10px;
   }
-}
+
+  *{ box-sizing: border-box; }
+
+  html{ -webkit-text-size-adjust: 100%; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--tinta);
+    padding-bottom: 96px; /* espacio para la barra fija de guardar */
+  }
+
+  h1, h2, .rotulo-seccion{
+    font-family: 'Barlow Semi Condensed', 'Inter', sans-serif;
+  }
+
+  /* =========================================================
+     BARRA SUPERIOR
+  ========================================================= */
+
+  .barra-superior{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--tinta);
+    color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid var(--rojo);
+  }
+
+  .barra-superior img{
+    height: 26px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+  }
+
+  .barra-superior__texto{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.2px;
+    line-height: 1.15;
+  }
+
+  .barra-superior__texto span{
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    color: #C7CBD1;
+    letter-spacing: 0.3px;
+  }
+
+  /* =========================================================
+     CONTENEDOR Y SECCIONES
+  ========================================================= */
+
+  .contenedor{
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px 16px 8px;
+  }
+
+  .seccion{
+    background: var(--superficie);
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .seccion__cabecera{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 14px 18px 12px;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .rotulo-seccion{
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+  }
+
+  .seccion__contador{
+    font-size: 12px;
+    color: var(--tinta-suave);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .seccion__cuerpo{
+    padding: 16px 18px 20px;
+  }
+
+  /* Acento lateral distinto para identificar la sección del trabajador como una credencial */
+  .seccion--trabajador{
+    border-left: 4px solid var(--rojo);
+  }
+
+  /* =========================================================
+     CAMPOS
+  ========================================================= */
+
+  .campo{
+    margin-bottom: 16px;
+  }
+
+  .campo:last-child{ margin-bottom: 0; }
+
+  .campo label{
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--tinta-suave);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .campo input[type="text"],
+  .campo input[type="number"],
+  .campo select{
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1.5px solid var(--linea);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; /* evita zoom automático en iOS */
+    color: var(--tinta);
+    background: var(--superficie);
+    outline: none;
+    transition: border-color 0.15s ease;
+    appearance: none;
+  }
+
+  .campo input:focus,
+  .campo select:focus{
+    border-color: var(--rojo);
+  }
+
+  .campo select{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23666D76' stroke-width='1.6' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 34px;
+  }
+
+  .fila-dos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* Contador de cantidad estilo stepper, más cómodo en celular */
+  .stepper{
+    display: flex;
+    align-items: stretch;
+    height: 48px;
+    border: 1.5px solid var(--linea);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .stepper button{
+    width: 44px;
+    border: none;
+    background: #F6F7F8;
+    color: var(--tinta);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .stepper button:active{ background: var(--linea); }
+
+  .stepper input{
+    flex: 1;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    -moz-appearance: textfield;
+  }
+
+  .stepper input::-webkit-outer-spin-button,
+  .stepper input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .nota{
+    font-size: 12px;
+    color: var(--tinta-suave);
+    line-height: 1.5;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--linea);
+  }
+
+  /* =========================================================
+     FIRMAS
+  ========================================================= */
+
+  .firma{
+    margin-bottom: 18px;
+  }
+
+  .firma:last-child{ margin-bottom: 0; }
+
+  .firma__cabecera{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .firma__cabecera label{
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--tinta-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .firma__borrar{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--rojo);
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 2px;
+  }
+
+  .firma__borrar svg{ width: 14px; height: 14px; }
+
+  .firma-lienzo{
+    position: relative;
+    border: 1.5px dashed var(--linea);
+    border-radius: 8px;
+    background: #FAFAFA;
+    touch-action: none;
+  }
+
+  .firma-lienzo canvas{
+    display: block;
+    width: 100%;
+    height: 140px;
+    cursor: crosshair;
+    border-radius: 8px;
+  }
+
+  .firma-lienzo__marca{
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 24px;
+    border-top: 1px solid var(--linea);
+    pointer-events: none;
+  }
+
+  .firma-lienzo__vacio{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12.5px;
+    color: #A7ACB3;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+
+  /* =========================================================
+     ESTADO
+  ========================================================= */
+
+  .estado{
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 10px 16px 0;
+    min-height: 20px;
+  }
+
+  .estado--ok{ color: var(--ok); }
+  .estado--error{ color: var(--rojo); }
+
+  /* =========================================================
+     BARRA INFERIOR FIJA
+  ========================================================= */
+
+  .barra-inferior{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    background: var(--superficie);
+    border-top: 1px solid var(--linea);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .boton-guardar{
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    display: block;
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    background: var(--rojo);
+    color: #fff;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .boton-guardar:active{ background: var(--rojo-oscuro); }
+
+  .boton-guardar:disabled{
+    background: #C6C9CE;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 420px){
+    .fila-dos{ grid-template-columns: 1fr; }
+  }
